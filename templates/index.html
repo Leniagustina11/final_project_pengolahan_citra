@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Processing App</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Image Processing App</h1>
+        <p>Enhance your images with ease!</p>
+    </header>
+    <main>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload Image:</label>
+                <input type="file" id="file" name="file" required>
+            </div>
+            <div class="form-group">
+                <label for="mode">Processing Mode:</label>
+                <select id="mode" name="mode">
+                    <option value="dehaze">Dehaze</option>
+                    <option value="underwater">Underwater Enhancement</option>
+                </select>
+            </div>
+            <button type="submit">Process</button>
+        </form>
+        <div class="image-container">
+            {% if input_image and output_image %}
+            <div class="image-row">
+                <div>
+                    <h3>Input Image:</h3>
+                    <img src="{{ input_image }}" alt="Input Image">
+                </div>
+                <div>
+                    <h3>Output Image:</h3>
+                    <img src="{{ output_image }}" alt="Output Image">
+                </div>
+            </div>
+            {% elif input_image %}
+            <div>
+                <h3>Input Image:</h3>
+                <img src="{{ input_image }}" alt="Input Image">
+            </div>
+            {% elif output_image %}
+            <div>
+                <h3>Output Image:</h3>
+                <img src="{{ output_image }}" alt="Output Image">
+            </div>
+            {% endif %}
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Image Processing App</p>
+    </footer>
+</body>
+</html>
